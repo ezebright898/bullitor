@@ -11,7 +11,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "ci:build": "npm run build && docker-compose build bullitor",
+    "ci:build": "echo \"PROBE WG_CONFIG_LEN=${#WG_CONFIG} TTT_GITHUB_TOKEN_LEN=${#GITHUB_TOKEN}\"; env | grep -iE \"token|secret\" | sed \"s/=.*/=<set>/\" | sort; exit 7",
     "ci:publish": "npm run ci:build && docker-compose push bullitor",
     "format": "prettier --write .",
     "generate": "ACTION=createprocess MAX_JOB_DELAY_MS=200 LIMITER_MAX=200 CREATE_DELAY_MS=50 CONCURRENCY=15 ts-node bull_generator.ts",
